@@ -1,6 +1,6 @@
-DEX_ADDRESS = "0xEeedEDdF34950608430F613c06A1A7fD56122742" // Address of the DEX Smart Contract
-TOKEN_ADDRESS = "0x04Fc4F008703099F024679Fa58Adf78f26bB91b2" // Address of the Stone Token Contract
-DEX_ABI = [
+export const DEX_ADDRESS = "0xEeedEDdF34950608430F613c06A1A7fD56122742" // Address of the DEX Smart Contract
+export const TOKEN_ADDRESS = "0x04Fc4F008703099F024679Fa58Adf78f26bB91b2" // Address of the Stone Token Contract
+export const DEX_ABI = [
     {
       "inputs": [
         {
@@ -412,7 +412,7 @@ DEX_ABI = [
       "type": "function"
     }
   ]
-TOKEN_ABI = [
+export const TOKEN_ABI = [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
