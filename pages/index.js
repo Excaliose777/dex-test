@@ -210,7 +210,7 @@ export default function Home() {
     };
 
       /**
-   * _getTokensAfterRemove: Calculates the amount of `Ether` and `CD` tokens
+   * _getTokensAfterRemove: Calculates the amount of `Ether` and `ST` tokens
    * that would be returned back to user after he removes `removeLPTokenWei` amount
    * of LP tokens from the contract
    */
@@ -223,14 +223,14 @@ export default function Home() {
       // get the stone token reserves from the contract
       const stoneTokenReserve = await getReserveOfST(provider);
       // call the getTokensAfterRemove from the utils folder
-      const { _removeEther, _removeCD } = await getTokensAfterRemove(
+      const { _removeEther, _removeST } = await getTokensAfterRemove(
         provider,
         removeLPTokenWei,
         _ethBalance,
         stoneTokenReserve
       );
       setRemoveEther(_removeEther);
-      setRemoveST(_removeCD);
+      setRemoveST(_removeST);
     } catch (err) {
       console.error(err);
     }
