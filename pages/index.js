@@ -166,19 +166,22 @@ export default function Home() {
    * _addLiquidity helps add liquidity to the exchange,
    * If the user is adding initial liquidity, user decides the ether and CD tokens he wants to add
    * to the exchange. If he is adding the liquidity after the initial liquidity has already been added
-   * then we calculate the crypto dev tokens he can add, given the Eth he wants to add by keeping the ratios
+   * then we calculate the stone tokens he can add, given the Eth he wants to add by keeping the ratios
    * constant
    */
      const _addLiquidity = async () => {
       try {
         // Convert the ether amount entered by the user to Bignumber
         const addEtherWei = utils.parseEther(addEther.toString());
+        console.log("parsing")
         // Check if the values are zero
         if (!addSTTokens.eq(zero) && !addEtherWei.eq(zero)) {
-          // call the addLiquidity function from the utils folder
+          // call the addLiquidity function from the components folder
           await addLiquidity(signer, addSTTokens, addEtherWei);
-          // Reinitialize the CD tokens
+          console.log("awaiting add liquidity...")
+          // Reinitialize the ST tokens
           setAddSTTokens(zero);
+          console.log("st set")
           // Get amounts for all values after the liquidity has been added
           await getAmounts();
         } else {
@@ -217,7 +220,7 @@ export default function Home() {
       const removeLPTokenWei = utils.parseEther(_removeLPTokens);
       // Get the Eth reserves within the exchange contract
       const _ethBalance = await getEtherBalance(provider, null, true);
-      // get the crypto dev token reserves from the contract
+      // get the stone token reserves from the contract
       const stoneTokenReserve = await getReserveOfST(provider);
       // call the getTokensAfterRemove from the utils folder
       const { _removeEther, _removeCD } = await getTokensAfterRemove(
@@ -337,6 +340,10 @@ export default function Home() {
     } else {
       return (
         <div>
+          <div>
+            <h5>{utils.formatEther(reservedST)} Stone Tokens Available</h5>
+            <h5>{utils.formatEther(etherBalanceContract)} Ether in the Contract</h5>
+          </div>
           <input
             type="number"
             placeholder="Amount"
@@ -368,7 +375,7 @@ export default function Home() {
             {ethSelected
               ? `You will get ${utils.formatEther(
                   tokenToBeReceivedAfterSwap
-                )} Crypto Dev Tokens`
+                )} Stone Tokens`
               : `You will get ${utils.formatEther(
                   tokenToBeReceivedAfterSwap
                 )} Eth`}
