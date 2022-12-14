@@ -88,10 +88,10 @@ export default function Home() {
       // const signer = await getProviderOrSigner(true);
       // const address = await signer.getAddress();
 
-      console.log(address);
+      // console.log(address);
       // get the amount of eth in the user's account
       const _ethBalance = await getEtherBalance(provider, address);
-      console.log(_ethBalance)
+      // console.log(_ethBalance)
       // const _ethBalance = await getUserETH(provider, address);
       // get the amount of `Stone` tokens held by the user
       const _stBalance = await getSTBalance(provider, address);
@@ -327,8 +327,8 @@ export default function Home() {
               />
               <div className={styles.inputDiv}>
                 {/* Convert the BigNumber to string using the formatEther function from ethers.js */}
-                {`You will get ${utils.formatEther(removeST)} Crypto
-              Dev Tokens and ${utils.formatEther(removeEther)} Eth`}
+                {`You will get ${utils.formatEther(removeST)} Stone
+              Tokens and ${utils.formatEther(removeEther)} Eth`}
               </div>
               <button className={styles.button1} onClick={_removeLiquidity}>
                 Remove
